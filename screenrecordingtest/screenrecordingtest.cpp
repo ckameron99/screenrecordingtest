@@ -2,10 +2,24 @@
 //
 
 #include <iostream>
+#include <windows.h>
+
+int changeResolution(int horiz, int vert)
+{
+    DEVMODE desiredMode = { 0 };
+    desiredMode.dmSize = sizeof(DEVMODE);
+    desiredMode.dmPelsWidth = horiz;
+    desiredMode.dmPelsHeight = vert;
+    desiredMode.dmFields = DM_PELSHEIGHT | DM_PELSWIDTH;
+    LONG res = ChangeDisplaySettings(&desiredMode, CDS_UPDATEREGISTRY | CDS_GLOBAL | CDS_RESET);
+    return res;
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    //std::cout << changeResolution(1280, 720);
+    
+    return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
